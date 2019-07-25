@@ -73,7 +73,7 @@
         <ul class="nav pull-right top-menu">
 
           <!-- task notificatoin start -->
-          <li id="task_notificatoin_bar" class="dropdown">
+         {{--  <li id="task_notificatoin_bar" class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <i class="icon-task-l"></i>
                             <span class="badge bg-important">6</span>
@@ -155,10 +155,10 @@
                 <a href="#">See All Tasks</a>
               </li>
             </ul>
-          </li>
+          </li> --}}
           <!-- task notificatoin end -->
           <!-- inbox notificatoin start-->
-          <li id="mail_notificatoin_bar" class="dropdown">
+          {{-- <li id="mail_notificatoin_bar" class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <i class="icon-envelope-l"></i>
                             <span class="badge bg-important">5</span>
@@ -220,10 +220,10 @@
                 <a href="#">See all messages</a>
               </li>
             </ul>
-          </li>
+          </li> --}}
           <!-- inbox notificatoin end -->
           <!-- alert notification start-->
-          <li id="alert_notificatoin_bar" class="dropdown">
+          {{-- <li id="alert_notificatoin_bar" class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 
                             <i class="icon-bell-l"></i>
@@ -266,40 +266,41 @@
                 <a href="#">See all notifications</a>
               </li>
             </ul>
-          </li>
+          </li> --}}
           <!-- alert notification end-->
           <!-- user login dropdown start-->
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="profile-ava">
-                                <img alt="" src="img/avatar1_small.jpg">
-                            </span>
-                            <span class="username">Jenifer Smith</span>
+                            <i class="icon_profile"></i>
+                            <span class="username">Nombre Usuario</span>
                             <b class="caret"></b>
                         </a>
             <ul class="dropdown-menu extended logout">
               <div class="log-arrow-up"></div>
-              <li class="eborder-top">
+{{--               <li class="eborder-top">
                 <a href="#"><i class="icon_profile"></i> My Profile</a>
-              </li>
-              <li>
+              </li> --}}
+{{--               <li>
                 <a href="#"><i class="icon_mail_alt"></i> My Inbox</a>
-              </li>
-              <li>
+              </li> --}}
+{{--               <li>
                 <a href="#"><i class="icon_clock_alt"></i> Timeline</a>
-              </li>
-              <li>
+              </li> --}}
+{{--               <li>
                 <a href="#"><i class="icon_chat_alt"></i> Chats</a>
-              </li>
+              </li> --}}
               <li>
-                <a href="login.html"><i class="icon_key_alt"></i> Log Out</a>
+                <a  href="{{ url('/logout') }}"  onclick="event.preventDefault();    document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-out"></span> Salir </a>
+                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+                </form>
               </li>
-              <li>
+{{--               <li>
                 <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
               </li>
               <li>
                 <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
-              </li>
+              </li> --}}
             </ul>
           </li>
           <!-- user login dropdown end -->
@@ -327,8 +328,8 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
             <ul class="sub">
-              <li><a class="" href="form_component.html">Maestros</a></li>
-              <li><a class="" href="form_validation.html">Alumnos</a></li>
+              <li><a class="" href="{{route('user.index')}}">Usuarios</a></li>
+              
               <li><a class="" href="form_component.html">Grupos</a></li>             
               <li><a class="" href="form_component.html">Asignaturas</a></li>               
             </ul>
@@ -396,7 +397,7 @@
     <section id="main-content">
       <section class="wrapper">
         <!--overview start-->
-        <div class="row">
+        {{-- <div class="row">
           <div class="col-lg-12">
             <h3 class="page-header"><i class="fa fa-laptop"></i> Inicio</h3>
             <ol class="breadcrumb">
@@ -405,7 +406,7 @@
             </ol>
           </div>
         </div>
-
+ --}}
         {{-- <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="info-box blue-bg">
@@ -451,7 +452,7 @@
         <!--/.row-->
 
 
-        <div class="row">
+        {{-- <div class="row">
           <div class="col-lg-9 col-md-12">
 
             <div class="panel panel-default">
@@ -474,7 +475,7 @@
             <ul class="today-datas">
               <!-- List #1 -->
               <li>
-                <!-- Graph -->
+                Graph
                 <div><span id="todayspark1" class="spark"></span></div>
                 <!-- Text -->
                 <div class="datas-text">11,500 visitors/day</div>
@@ -499,14 +500,14 @@
           </div>
 
 
-        </div>
+        </div> --}}
 
 
         <!-- Today status end -->
 
 
 
-        <div class="row">
+        {{-- <div class="row">
 
           <div class="col-lg-9 col-md-12">
             <div class="panel panel-default">
@@ -714,7 +715,7 @@
           </div>
           <!--/col-->
 
-        </div>
+        </div> --}}
 
 
 
@@ -724,7 +725,7 @@
 
 
         <!-- project team & activity start -->
-        <div class="row">
+        {{-- <div class="row">
           <div class="col-md-4 portlets">
             <!-- Widget -->
             <div class="panel panel-default">
@@ -830,7 +831,7 @@
                   </div>
                   <div class="col-lg-4">
                     <span class="profile-ava pull-right">
-                                        <img alt="" class="simple" src="img/avatar1_small.jpg">
+                                        <img alt="" class="simple" src="img/user.png">
                                         Jenifer smith
                                 </span>
                   </div>
@@ -848,7 +849,7 @@
                     </td>
                     <td>
                       <span class="profile-ava">
-                                        <img alt="" class="simple" src="img/avatar1_small.jpg">
+                                        <img alt="" class="simple" src="img/user.png">
                                     </span>
                     </td>
                   </tr>
@@ -886,7 +887,7 @@
                     </td>
                     <td>
                       <span class="profile-ava">
-                                        <img alt="" class="simple" src="img/avatar1_small.jpg">
+                                        <img alt="" class="simple" src="img/user.png">
                                       </span>
                     </td>
                   </tr>
@@ -936,7 +937,7 @@
                     </td>
                     <td>
                       <span class="profile-ava">
-                                        <img alt="" class="simple" src="img/avatar1_small.jpg">
+                                        <img alt="" class="simple" src="img/user.png">
                                       </span>
                     </td>
                   </tr>
@@ -1042,9 +1043,28 @@
 
           </div>
 
-        </div>
+        </div> --}}
         <!-- project team & activity end -->
 
+    <div class="row">
+          <div class="col-md-12 portlets">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h2><strong>Altas</strong></h2>
+                <div class="panel-actions">
+                  <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
+                  <a href="#" class="wclose"><i class="fa fa-times"></i></a>
+                </div>
+              </div>
+              <div class="panel-body">
+                <section>
+                  @yield('content')
+                </section>
+                
+              </div>
+            </div>
+          </div>
+      </div>
       </section>
       <div class="text-right">
         <div class="credits">
@@ -1064,6 +1084,7 @@
 
   <!-- javascripts -->
   <script src="{{ URL::asset('js/jquery.js')}}"></script>
+  <script src="{{ URL::asset('js/metodos.js')}}"></script>
   <script src="{{ URL::asset('js/jquery-ui-1.10.4.min.js')}}"></script>
   <script src="{{ URL::asset('js/jquery-1.8.3.min.js')}}"></script>
   <script type="text/javascript" src="{{ URL::asset('js/jquery-ui-1.9.2.custom.min.js')}}"></script>

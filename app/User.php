@@ -14,8 +14,10 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = 'users';
+
     protected $fillable = [
-        'name', 'email', 'password',
+        'nombres','apellidos','usuario','password','backup_pass','nivel','estatus',
     ];
 
     /**
@@ -26,4 +28,24 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function relacioncontrol(){
+
+        return $this->hasMany('App\RelacionControl'); 
+    }
+
+    public function calificacion(){
+
+        return $this->hasMany('App\Calificacion'); 
+    }
+
+        public function estatus1(){
+
+        return $this->belongsTo('App\Estatus','estatus'); 
+    }
+
+        public function nivel1(){
+
+        return $this->belongsTo('App\Nivel','nivel'); 
+    }
 }

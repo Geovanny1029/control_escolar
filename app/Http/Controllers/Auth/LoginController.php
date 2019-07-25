@@ -3,21 +3,35 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
+use App\User;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
+ public function login(Request $request)
+    {
 
+        if (Auth::attempt(['usuario' =>$request['usuario'], 'password' => $request['password']])) {
+
+            if(Auth::user()->nivel == 1){
+                return redirect()->route('user.index');}
+                else
+                    if(Auth::user()->nivel == 2){return redirect()->route('');}
+                else
+                    if(Auth::user()->nivel == 3){return redirect()->route('');}
+                                     
+                else{
+                    return view('auth.login');
+                }
+            // Authentication passed...
+        }else{
+            return view('auth.login');
+        }
+    }//fin de funcion login
     use AuthenticatesUsers;
 
     /**
@@ -26,7 +40,7 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
-
+    protected $redirectAfterLogout = '/login';
     /**
      * Create a new controller instance.
      *
@@ -34,6 +48,6 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest', ['except' =>['logout','login'] ]);
     }
 }
