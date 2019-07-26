@@ -1,28 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
+<!-- saved from url=(0027)http://localhost:8000/login -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
   <meta name="author" content="GeeksLabs">
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="csrf-token" content="2EMdOy1M0j5ufU9sn1uQHOeJLgNzskqFECgvXI8U">
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
-  <link rel="shortcut icon" href="img/favicon.png">
+  <link rel="shortcut icon" href="http://localhost:8000/img/favicon.png">
 
   <title>Control Escolar V1</title>
 
   <!-- Bootstrap CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="./Control Escolar V1_files/bootstrap.min.css" rel="stylesheet">
   <!-- bootstrap theme -->
-  <link href="css/bootstrap-theme.css" rel="stylesheet">
+  <link href="./Control Escolar V1_files/bootstrap-theme.css" rel="stylesheet">
   <!--external css-->
   <!-- font icon -->
-  <link href="css/elegant-icons-style.css" rel="stylesheet" />
-  <link href="css/font-awesome.css" rel="stylesheet" />
+  <link href="./Control Escolar V1_files/elegant-icons-style.css" rel="stylesheet">
+  <link href="./Control Escolar V1_files/font-awesome.css" rel="stylesheet">
   <!-- Custom styles -->
-  <link href="css/style.css" rel="stylesheet">
-  <link href="css/style-responsive.css" rel="stylesheet" />
+  <link href="./Control Escolar V1_files/style.css" rel="stylesheet">
+  <link href="./Control Escolar V1_files/style-responsive.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
   <!--[if lt IE 9]>
@@ -37,9 +36,7 @@
       Author URL: https://bootstrapmade.com
     ======================================================= -->
     <script>
-        window.Laravel = {!! json_encode([
-            'csrfToken' => csrf_token(),
-        ]) !!};
+        window.Laravel = {"csrfToken":"2EMdOy1M0j5ufU9sn1uQHOeJLgNzskqFECgvXI8U"};
     </script>
 </head>
 
@@ -47,33 +44,23 @@
 
   <div class="container">
 
-    <form class="login-form" method="POST" action="{{ url('/login') }}">
-        {{ csrf_field() }}
+    <form class="login-form" method="POST" action="http://localhost:8000/login">
+        <input type="hidden" name="_token" value="2EMdOy1M0j5ufU9sn1uQHOeJLgNzskqFECgvXI8U">
       <div class="login-wrap">
         <p class="login-img"><i class="icon_lock_alt"></i></p>
         <div class="input-group">
           <span class="input-group-addon"><i class="icon_profile"></i></span>
-            <input id="usuario" type="usuario" class="form-control" name="usuario" value="{{ old('usuario') }}" placeholder="usuario" required autofocus>
-            @if ($errors->has('usuario'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('usuario') }}</strong>
-                </span>
-            @endif
-        </div>
+            <input id="usuario" type="usuario" class="form-control" name="usuario" value="" required="" autofocus="">
+                    </div>
         <div class="input-group">
           <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-            <input id="password" type="password" class="form-control" name="password" placeholder="******" required>
+            <input id="password" type="password" class="form-control" name="password" required="">
 
-            @if ($errors->has('password'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('password') }}</strong>
-                </span>
-            @endif
-        </div>
+                    </div>
         <label class="checkbox">
                 <input type="checkbox" value="remember-me"> Remember me
             </label>
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Ingresar</button>
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
       </div>
     </form>
     <div class="text-right">
@@ -90,6 +77,6 @@
   </div>
 
 
-</body>
 
-</html>
+
+</body></html>
