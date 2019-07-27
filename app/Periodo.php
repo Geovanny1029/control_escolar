@@ -19,7 +19,7 @@ class Periodo extends Model
         return $this->hasMany('App\RelacionControl'); 
     }
 
-   	public function estatus(){
+   	public function estatusp(){
 
         return $this->belongsTo('App\Estatus','estatus'); 
     }

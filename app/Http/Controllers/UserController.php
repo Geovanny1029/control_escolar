@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Nivel;
 use App\Estatus;
+use App\RelacionControl;
 
 
 class UserController extends Controller
@@ -74,6 +76,16 @@ class UserController extends Controller
         //
     }
 
+    public function vistam(){
+
+        $gru = RelacionControl::select('id_grupo')->where('id_maestro',Auth::User()->id)->groupBy('id_grupo')->orderBY('id','asc')->get();
+    
+        $gru->each(function($gru){
+            $gru->grupor;
+        });
+
+        return view('maestro.index')->with('gru',$gru);
+    }
     /**
      * Show the form for editing the specified resource.
      *

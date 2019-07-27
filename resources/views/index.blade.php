@@ -272,7 +272,7 @@
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <i class="icon_profile"></i>
-                            <span class="username">Nombre Usuario</span>
+                            <span class="username">{{ Auth::user()->nombres}}</span>
                             <b class="caret"></b>
                         </a>
             <ul class="dropdown-menu extended logout">
@@ -330,8 +330,10 @@
             <ul class="sub">
               <li><a class="" href="{{route('user.index')}}">Usuarios</a></li>
               
-              <li><a class="" href="form_component.html">Grupos</a></li>             
-              <li><a class="" href="form_component.html">Asignaturas</a></li>               
+              <li><a class="" href="{{route('grupo.index')}}">Grupos</a></li>             
+              <li><a class="" href="{{route('asignatura.index')}}">Asignaturas</a></li> 
+              <li><a class="" href="{{route('periodo.index')}}">Periodos</a></li>   
+              <li><a class="" href="{{route('relacion_control.index')}}">Relacion</a></li>             
             </ul>
           </li>
 {{--           <li class="sub-menu">

@@ -51,8 +51,10 @@
         {{ csrf_field() }}
       <div class="login-wrap">
         <p class="login-img"><i class="icon_lock_alt"></i></p>
+        <p><b>Control Escolar</b></p>
         <div class="input-group">
-          <span class="input-group-addon"><i class="icon_profile"></i></span>
+          <span class="input-group-addon"><i class="icon_profile"></i>
+          </span>
             <input id="usuario" type="usuario" class="form-control" name="usuario" value="{{ old('usuario') }}" placeholder="usuario" required autofocus>
             @if ($errors->has('usuario'))
                 <span class="help-block">

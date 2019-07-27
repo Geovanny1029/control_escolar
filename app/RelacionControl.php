@@ -17,26 +17,26 @@ class RelacionControl extends Model
    		'id_alumno',   
    	];
 
-	public function asignatuta(){
+	public function asignaturar(){
 
         return $this->belongsTo('App\Asignatura','id_asignatura'); 
     }
 
-    public function periodo(){
-
-    	return $this->belongsTo('App\Periodo','id_perido'); 	
-    }
-
-    public function grupo(){
+    public function grupor(){
 
     	return $this->belongsTo('App\Grupo','id_grupo'); 
     }
 
-    public function user(){
+   public function periodo1(){
+
+      return $this->belongsTo('App\Periodo','id_periodo');   
+    }
+
+    public function userm(){
     	return $this->belongsTo('App\User','id_maestro'); 
     }
 
-    public function user2(){
+    public function useral(){
     	return $this->belongsTo('App\User','id_alumno'); 
     }
 }

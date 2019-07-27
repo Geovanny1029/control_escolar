@@ -19,7 +19,7 @@ class Grupo extends Model
         return $this->hasMany('App\RelacionControl'); 
     }
 
-   	public function estatus(){
+   	public function estatusg(){
 
         return $this->belongsTo('App\Estatus','estatus'); 
     }

@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Grupo;
+use App\Estatus;
 
 class GrupoController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');///se configura en midlewere/autenticate para proteger las rutas
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +19,14 @@ class GrupoController extends Controller
      */
     public function index()
     {
-        //
+        $grupos = Grupo::orderBy('id','ASC')->get();
+        $grupos->each(function($grupos){
+            $grupos->estatusg;
+        });
+
+        $listaE = Estatus::orderBY('estatus','ASC')->pluck('estatus','id');
+
+        return view('grupos.index')->with('grupos', $grupos)->with('listaE',$listaE);
     }
 
     /**
@@ -23,7 +36,7 @@ class GrupoController extends Controller
      */
     public function create()
     {
-        //
+        return view('grupo.create');
     }
 
     /**
@@ -34,7 +47,11 @@ class GrupoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $grupo = new Grupo($request->all());
+        $grupo->nombre=strtoupper($request->Nombre_grupo);
+        $grupo->save();
+
+        return back();
     }
 
     /**
@@ -71,6 +88,25 @@ class GrupoController extends Controller
         //
     }
 
+    public function actualiza(Request $request){
+
+        $id = $request->edit_idg;
+        $data= Grupo::find($id);
+        $data->nombre= strtoupper($request->edit_Nombre_grupo);
+        $data->estatus=$request->edit_estatusg;
+        $data->save();
+
+        return back();
+    }
+
+    public function view(Request $request){
+        if($request->ajax()){
+                $id = $request->id;
+                $info = Grupo::find($id);
+                return response()->json($info);
+            }
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -79,6 +115,15 @@ class GrupoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $grupos = Grupo::find($id);
+        if($grupos->estatus == 2){
+            $grupos->estatus = 1;
+            $grupos->save();
+            return redirect()->route('grupo.index');
+        }else{
+            $grupos->estatus = 2;
+            $grupos->save();
+            return redirect()->route('grupo.index');
+        }
     }
 }
