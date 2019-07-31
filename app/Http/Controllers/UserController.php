@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Nivel;
 use App\Estatus;
+use App\Grupo;
 use App\RelacionControl;
 
 
@@ -132,6 +133,47 @@ class UserController extends Controller
             }
     }
 
+
+    public function grupoM($id){
+
+        $asignaturas = RelacionControl::select('id_asignatura'
+      )->where('id_grupo',$id)->where('id_maestro',Auth::User()->id)->groupBy('id_asignatura')->orderBY('id','asc')->get();
+
+        $idr = RelacionControl::where('id_grupo',$id)->where('id_maestro',Auth::User()->id)->first();
+
+        $grup = Grupo::find($id);
+        $grupo = $grup->nombre;
+      
+
+        $asignaturas->each(function($asignaturas){
+        $asignaturas->asignaturar;
+        });
+
+        return view('maestro.asignaturas')->with('asignaturas',$asignaturas)->with('idr',$idr)->with('grupo',$grupo);
+
+    }
+
+    public function storesub(Request $request){
+
+        
+    }
+
+
+    public function asignaturaM($id){
+
+        $identificador = RelacionControl::find($id);
+
+        $grupo = $identificador->id_grupo;
+        $materia = $identificador->id_asignatura;
+
+        $alumnos = RelacionControl::where('id_grupo',$grupo)->where('id_asignatura',$materia)->where('id_maestro',Auth::User()->id)->get();
+
+        $alumnos->each(function($alumnos){
+        $alumnos->useral;
+        });
+        return view('maestro.alumnos')->with('alumnos',$alumnos);
+
+    }
     /**
      * Remove the specified resource from storage.
      *

@@ -31,10 +31,23 @@ Route::get('usermaestro',[
 			'uses' => 'UserController@vistam',
 			'as'   => 'user.vistam'
 ]);
+
+Route::get('usermaestrogrupo/{id}','UserController@grupoM');
+
+Route::get('usermaestrogrupoasignatura/{id}','UserController@asignaturaM');
+
+
+
 Route::get('user/{id}/destroy',[
 			'uses' => 'UserController@destroy',
 			'as'   => 'user.destroy'
 ]);
+
+Route::get('user/storesub',[
+			'uses' => 'UserController@storesub',
+			'as'   => 'user.storesub'
+]);
+
 
 Route::resource('asignatura','AsignaturaController');
 Route::post('asignaturasu',[
