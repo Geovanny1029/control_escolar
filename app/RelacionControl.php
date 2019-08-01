@@ -39,4 +39,9 @@ class RelacionControl extends Model
     public function useral(){
     	return $this->belongsTo('App\User','id_alumno'); 
     }
+
+    public function calificacion(){
+
+        return $this->hasMany('App\Calificacion'); 
+    }
 }

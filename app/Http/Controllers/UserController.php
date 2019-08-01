@@ -8,6 +8,7 @@ use App\User;
 use App\Nivel;
 use App\Estatus;
 use App\Grupo;
+use App\Calificacion;
 use App\RelacionControl;
 
 
@@ -66,6 +67,18 @@ class UserController extends Controller
         return back();
     }
 
+    public function storesub(Request $request){
+        $cali = new Calificacion();
+        $cali->id_relacion = $request->id_reg;
+        $cali->C1 = $request->C1;
+        $cali->C2 = $request->C2;
+        $cali->C3 = $request->C3;
+        $cali->C4 = $request->C4;
+        $cali->save();
+        return back();
+        
+    }
+
     /**
      * Display the specified resource.
      *
@@ -77,6 +90,7 @@ class UserController extends Controller
         //
     }
 
+// vista index maestro
     public function vistam(){
 
         $gru = RelacionControl::select('id_grupo')->where('id_maestro',Auth::User()->id)->groupBy('id_grupo')->orderBY('id','asc')->get();
@@ -86,6 +100,20 @@ class UserController extends Controller
         });
 
         return view('maestro.index')->with('gru',$gru);
+    }
+
+
+// vista index alumno
+    public function vistaal(){
+
+        $gru = RelacionControl::select('id_grupo')->where('id_alumno',Auth::User()->id)->groupBy('id_grupo')->orderBY('id','asc')->get();
+    
+        $gru->each(function($gru){
+            $gru->grupor;
+        });
+
+        return view('alumno.index')->with('gru',$gru);
+
     }
     /**
      * Show the form for editing the specified resource.
@@ -125,11 +153,39 @@ class UserController extends Controller
         return back();
     }
 
+    public function actualizasub(Request $request){
+
+        $id = $request->id_regsub;
+        $data= Calificacion::find($id);
+        $data->C1=($request->edit_C1);
+        $data->C2=($request->edit_C2);
+        $data->C3=($request->edit_C3);
+        $data->C4=($request->edit_C4);
+        $data->save();
+
+        return back();
+    }
+
     public function view(Request $request){
         if($request->ajax()){
                 $id = $request->id;
                 $info = User::find($id);
                 return response()->json($info);
+            }
+    }
+
+    public function viewsub(Request $request){
+        if($request->ajax()){
+                $id = $request->id;
+
+                $info = Calificacion::SELECT('id','id_relacion')->where('id_relacion','=',$id)->get('id');
+
+                foreach($info as $inf){
+
+                    $movimiento = Calificacion::find($inf->id);
+                }
+
+                return response()->json($movimiento);
             }
     }
 
@@ -139,7 +195,7 @@ class UserController extends Controller
         $asignaturas = RelacionControl::select('id_asignatura'
       )->where('id_grupo',$id)->where('id_maestro',Auth::User()->id)->groupBy('id_asignatura')->orderBY('id','asc')->get();
 
-        $idr = RelacionControl::where('id_grupo',$id)->where('id_maestro',Auth::User()->id)->first();
+        $idr = RelacionControl::where('id_grupo',$id)->where('id_maestro',Auth::User()->id)->get();
 
         $grup = Grupo::find($id);
         $grupo = $grup->nombre;
@@ -153,9 +209,24 @@ class UserController extends Controller
 
     }
 
-    public function storesub(Request $request){
 
-        
+    public function grupoAL($id){
+
+        $asignaturas = RelacionControl::select('id_asignatura'
+      )->where('id_grupo',$id)->where('id_alumno',Auth::User()->id)->groupBy('id_asignatura')->orderBY('id','asc')->get();
+
+        $idr = RelacionControl::where('id_grupo',$id)->where('id_alumno',Auth::User()->id)->get();
+
+        $grup = Grupo::find($id);
+        $grupo = $grup->nombre;
+      
+
+        $asignaturas->each(function($asignaturas){
+        $asignaturas->asignaturar;
+        });
+
+        return view('alumno.asignaturas')->with('asignaturas',$asignaturas)->with('idr',$idr)->with('grupo',$grupo);
+
     }
 
 
@@ -167,12 +238,26 @@ class UserController extends Controller
         $materia = $identificador->id_asignatura;
 
         $alumnos = RelacionControl::where('id_grupo',$grupo)->where('id_asignatura',$materia)->where('id_maestro',Auth::User()->id)->get();
+       
 
         $alumnos->each(function($alumnos){
         $alumnos->useral;
         });
         return view('maestro.alumnos')->with('alumnos',$alumnos);
 
+    }
+
+    public function calificacionA($id){
+
+        $existe = Calificacion::where('id_relacion',$id)->get();
+        $idre = RelacionControl::find($id);
+        $idr= $idre->id;
+        $cuenta = count($existe);
+        if($cuenta == 0 ){
+           $existe = null;
+        }
+   
+        return view('maestro.calificaciones')->with('existe',$existe)->with('idr',$idr);
     }
     /**
      * Remove the specified resource from storage.

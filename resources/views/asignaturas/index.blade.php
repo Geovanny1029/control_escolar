@@ -29,7 +29,7 @@
       <td>
 
 
-      <button class="btn btn-warning" data-toggle="modal" data-target="#editModala" onclick="fun_edit('{{$asignatura->id}}')" id="editara" value="{{route('asignatura.view')}}">Editar </button>
+      <button class="btn btn-warning" data-toggle="modal" data-target="#editModala" onclick="fun_edita('{{$asignatura->id}}')" id="editara" value="{{route('asignatura.view')}}">Editar </button>
 
       @if($asignatura->estatus == 1)
         <a class="btn btn-danger" onclick="return confirm('¿Seguro que deseas dar de baja este Usuario?')" href="{{route('asignatura.destroy', $asignatura->id)}}">Eliminar</a>

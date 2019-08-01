@@ -10,7 +10,7 @@ class Calificacion extends Model
 
 	protected $fillable= [
    		'id',
-   		'id_alumno',
+   		'id_relacion',
    		'C1',
    		'C2',
    		'C3',
@@ -20,11 +20,9 @@ class Calificacion extends Model
 
     public function relacioncontrol(){
 
-        return $this->hasMany('App\RelacionControl'); 
+      return $this->belongsTo('App\RelacionControl','id_relacion'); 
+    
     }
 
-    public function user2(){
 
-        return $this->belongsTo('App\User','id_alumno'); 
-    }
 }

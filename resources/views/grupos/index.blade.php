@@ -29,7 +29,7 @@
       <td>
 
 
-      <button class="btn btn-warning" data-toggle="modal" data-target="#editModalg" onclick="fun_edit('{{$grupo->id}}')" id="editarg" value="{{route('grupo.view')}}">Editar </button>
+      <button class="btn btn-warning" data-toggle="modal" data-target="#editModalg" onclick="fun_editg('{{$grupo->id}}')" id="editarg" value="{{route('grupo.view')}}">Editar </button>
 
       @if($grupo->estatus == 1)
         <a class="btn btn-danger" onclick="return confirm('¿Seguro que deseas dar de baja este Usuario?')" href="{{route('grupo.destroy', $grupo->id)}}">Eliminar</a>

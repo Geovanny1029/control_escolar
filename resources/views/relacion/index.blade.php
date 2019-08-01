@@ -35,7 +35,7 @@
       <td>
 
 
-      <button class="btn btn-warning" data-toggle="modal" data-target="#editModalr" onclick="fun_edit('{{$relacion->id}}')" id="editarr" value="{{route('relacion_control.view')}}">Editar </button>
+      <button class="btn btn-warning" data-toggle="modal" data-target="#editModalr" onclick="fun_editr('{{$relacion->id}}')" id="editarr" value="{{route('relacion_control.view')}}">Editar </button>
 
       </td>
     </tr>

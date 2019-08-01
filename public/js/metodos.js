@@ -26,7 +26,7 @@ function fun_edit(id)
     }
 
 //vista editar grupo
-function fun_edit(id)
+function fun_editg(id)
     {
       var view_url = $("#editarg").val();
       $.ajax({
@@ -43,7 +43,7 @@ function fun_edit(id)
     }
 
 //vista editar asignaturas
-function fun_edit(id)
+function fun_edita(id)
     {
       var view_url = $("#editara").val();
       $.ajax({
@@ -60,7 +60,7 @@ function fun_edit(id)
     }
 
 //vista editar Periodos
-function fun_edit(id)
+function fun_editp(id)
     {
       var view_url = $("#editarp").val();
       $.ajax({
@@ -76,8 +76,8 @@ function fun_edit(id)
       });
     }
 
-//vista editar Periodos
-function fun_edit(id)
+//vista editar relacion
+function fun_editr(id)
     {
       var view_url = $("#editarr").val();
       $.ajax({
@@ -92,6 +92,25 @@ function fun_edit(id)
           $("#edit_maestrosel").val(result.id_maestro);
           $("#edit_alumnosel").val(result.id_alumno);
           $("#edit_idr").val(result.id);
+        }
+      });
+    }
+
+//vista editar calificaciones alumnos
+function fun_sub(id)
+    {
+      var view_url = $("#editarsub").val();
+      $.ajax({
+        url: view_url,
+        type:"GET", 
+        data: {"id":id}, 
+        success: function(result){
+          //console.log(result);
+          $("#edit_C1").val(result.C1);
+          $("#edit_C2").val(result.C2);
+          $("#edit_C3").val(result.C3);
+          $("#edit_C4").val(result.C4);
+          $("#id_regsub").val(result.id);
         }
       });
     }

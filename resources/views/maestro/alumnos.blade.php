@@ -16,14 +16,14 @@
     @foreach($alumnos as $alumno)
     <tr>
 
-      <td> {{$alumno->useral->nombres}} {{$alumno->useral->apellidos}} </td>
-      <td> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addModalsub">Subir Calificacion</button>
-
-		<button type="button" class="btn btn-info" data-toggle="modal" data-target="#addModalsub">Promedio</button>
-       <br><br> 
+      <td> 
+        {{$alumno->useral->nombres}} {{$alumno->useral->apellidos}} 
+      </td>
+      <td> 
+        <h4><a href="/Calificacion/{{$alumno->id}}">Ver</a> </h4>
       </td>
     </tr>
-    @include('maestro.subir')
+    
    @endforeach
   </tbody>
   

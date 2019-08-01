@@ -22,7 +22,7 @@ class LoginController extends Controller
                 else
                     if(Auth::user()->nivel == 2){return redirect()->route('user.vistam');}
                 else
-                    if(Auth::user()->nivel == 3){return redirect()->route('');}
+                    if(Auth::user()->nivel == 3){return redirect()->route('user.vistaal');}
                                      
                 else{
                     return view('auth.login');

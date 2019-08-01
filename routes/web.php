@@ -22,9 +22,20 @@ Route::post('usersu',[
 			'as'   => 'user.actualiza'
 ]);
 
+Route::post('usereditasub',[
+			'uses' => 'UserController@actualizasub',
+			'as'   => 'user.actualizasub'
+]);
+
+
 Route::get('userse',[
 			'uses' => 'UserController@view',
 			'as'   => 'user.view'
+]);
+
+Route::get('usereditcalificaciones',[
+			'uses' => 'UserController@viewsub',
+			'as'   => 'user.viewsub'
 ]);
 
 Route::get('usermaestro',[
@@ -32,18 +43,23 @@ Route::get('usermaestro',[
 			'as'   => 'user.vistam'
 ]);
 
+Route::get('useralumno',[
+			'uses' => 'UserController@vistaal',
+			'as'   => 'user.vistaal'
+]);
+
 Route::get('usermaestrogrupo/{id}','UserController@grupoM');
 
 Route::get('usermaestrogrupoasignatura/{id}','UserController@asignaturaM');
 
-
+Route::get('Calificacion/{id}','UserController@calificacionA');
 
 Route::get('user/{id}/destroy',[
 			'uses' => 'UserController@destroy',
 			'as'   => 'user.destroy'
 ]);
 
-Route::get('user/storesub',[
+Route::post('user/calificaciones',[
 			'uses' => 'UserController@storesub',
 			'as'   => 'user.storesub'
 ]);

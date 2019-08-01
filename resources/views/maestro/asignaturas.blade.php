@@ -5,11 +5,12 @@
 
 <h2>Asignaturas Asignadas </h2>
 <h2>{{$grupo}}</h2>
-@foreach($asignaturas as $asigna)
-<center>
-	
-<h4><a href="/usermaestrogrupoasignatura/{{$idr['id']}}">{{$asigna->asignaturar->nombre}}</a> </h4> 
-</center>
-@endforeach
 
+<?php for ($i=0; $i < count($asignaturas) ; $i++) { ?>
+<center>
+<h4><a href="/usermaestrogrupoasignatura/{{$idr[$i]->id}}">{{$asignaturas[$i]->asignaturar->nombre}}</a> </h4> 
+	
+</center>
+
+<?php } ?>
 @endsection
