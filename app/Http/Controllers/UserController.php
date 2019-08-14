@@ -73,7 +73,6 @@ class UserController extends Controller
         $cali->C1 = $request->C1;
         $cali->C2 = $request->C2;
         $cali->C3 = $request->C3;
-        $cali->C4 = $request->C4;
         $cali->save();
         return back();
         
@@ -143,7 +142,8 @@ class UserController extends Controller
         $id = $request->edit_id;
         $data= User::find($id);
         $data->nombres= strtoupper($request->edit_Nombre_usuario);
-        $data->apellidos=$request->edit_apellidos;
+        $data->apellidos= strtoupper($request->edit_apellidos);
+        $data->usuario=$request->edit_usuario;
         $data->backup_pass=$request->edit_password;
         $data->password=bcrypt($request->edit_password);
         $data->nivel=$request->edit_nivel;
@@ -160,7 +160,6 @@ class UserController extends Controller
         $data->C1=($request->edit_C1);
         $data->C2=($request->edit_C2);
         $data->C3=($request->edit_C3);
-        $data->C4=($request->edit_C4);
         $data->save();
 
         return back();
@@ -245,6 +244,21 @@ class UserController extends Controller
         });
         return view('maestro.alumnos')->with('alumnos',$alumnos);
 
+    }
+
+    public function calificacionMat($id){
+
+        $info = Calificacion::SELECT('id','id_relacion','C1','C2','C3')->where('id_relacion','=',$id)->get('id');
+
+        if(count($info) == 0 ){
+
+            $movimiento = "SC";
+        }
+        foreach($info as $inf){
+
+            $movimiento = Calificacion::find($inf->id);
+        }
+         return view('alumno.calificaciones')->with('movimiento',$movimiento);
     }
 
     public function calificacionA($id){

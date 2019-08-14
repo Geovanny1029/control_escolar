@@ -7,7 +7,16 @@
 <!-- {!! Form::open(['route' => 'relacion_control.index', 'method' => 'GET', 'class' => 'navbar-form pull-left' ]) !!}
 
 {!! Form::close() !!} -->
-
+@if(count($errors) > 0)
+  <div class="alert alert-danger" role='alert'>
+    <ul> 
+    @foreach($errors->all() as $error)
+      <li>{{$error}} </li>
+    @endforeach
+    </ul>
+  </div>  
+  @endif
+  
 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addModalr">Crear Relaciones</button> <br><br>
 
 @include('relacion.crear')

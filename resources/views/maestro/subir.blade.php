@@ -24,10 +24,6 @@
                  {!! Form::label('C3', 'Calificacion 3') !!}  
                  {!! Form::text('C3',null,['class' => 'form-control', 'placeholder' => 'Calificacion' ] ) !!}
                </div>
-               <div class="form-group col-md-3">
-                 {!! Form::label('C4', 'Calificacion 4') !!}  
-                 {!! Form::text('C4',null,['class' => 'form-control', 'placeholder' => 'Calificacion' ] ) !!}
-               </div>
               </div>
 
               <div class="row">

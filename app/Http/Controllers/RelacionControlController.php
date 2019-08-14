@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ControlRequest;
 use App\User;
 use App\Nivel;
 use App\Estatus;
@@ -62,7 +63,7 @@ class RelacionControlController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ControlRequest $request)
     {
         $relacion = new RelacionControl($request->all());
         $relacion->id_grupo = $request->gruposel;

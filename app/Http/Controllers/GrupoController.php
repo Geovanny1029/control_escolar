@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Laracasts\Flash\Flash;
 use App\Grupo;
 use App\Estatus;
 
@@ -50,6 +51,8 @@ class GrupoController extends Controller
         $grupo = new Grupo($request->all());
         $grupo->nombre=strtoupper($request->Nombre_grupo);
         $grupo->save();
+
+        Flash::success('se ha registrado '.$grupo->nombre.' de Forma Exitosa');
 
         return back();
     }

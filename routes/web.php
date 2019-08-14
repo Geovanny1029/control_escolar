@@ -50,7 +50,11 @@ Route::get('useralumno',[
 
 Route::get('usermaestrogrupo/{id}','UserController@grupoM');
 
+Route::get('useralumnogrupo/{id}','UserController@grupoAl');
+
 Route::get('usermaestrogrupoasignatura/{id}','UserController@asignaturaM');
+
+Route::get('useralumnocalificacion/{id}','UserController@calificacionMat');
 
 Route::get('Calificacion/{id}','UserController@calificacionA');
 

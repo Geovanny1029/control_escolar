@@ -316,11 +316,20 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
           <li class="active">
-            <a class="" href="index.html">
+            <a class="" href="">
                           <i class="icon_house_alt"></i>
-                          <span>Administrador</span>
+                          <span>
+                             @if(Auth::user()->nivel == 1)
+                                Administrador
+                              @elseif(Auth::user()->nivel == 2)
+                                Maestro
+                              @else
+                                Alumno
+                              @endif
+                          </span>
                       </a>
           </li>
+          @if(Auth::User()->nivel == 1)
           <li class="sub-menu">
             <a href="javascript:;" class="">
                           <i class="icon_document_alt"></i>
@@ -336,6 +345,8 @@
               <li><a class="" href="{{route('relacion_control.index')}}">Relacion</a></li>             
             </ul>
           </li>
+          @else
+          @endif
 {{--           <li class="sub-menu">
             <a href="javascript:;" class="">
                           <i class="icon_desktop"></i>
@@ -1052,13 +1063,14 @@
           <div class="col-md-12 portlets">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h2><strong>Altas</strong></h2>
+                <h3 class="panel-title"><b>@yield('panel','Inicio')</b></h3>
                 <div class="panel-actions">
                   <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
                   <a href="#" class="wclose"><i class="fa fa-times"></i></a>
                 </div>
               </div>
               <div class="panel-body">
+               
                 <section>
                   @yield('content')
                 </section>

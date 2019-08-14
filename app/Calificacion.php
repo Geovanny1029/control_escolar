@@ -14,7 +14,6 @@ class Calificacion extends Model
    		'C1',
    		'C2',
    		'C3',
-   		'C4',
    		'promedio',   
    	];
 
