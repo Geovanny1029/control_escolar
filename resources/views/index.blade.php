@@ -11,6 +11,10 @@
 
   <title>Control escolar V1</title>
 
+ <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+
   <!-- Bootstrap CSS -->
   <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
   <!-- bootstrap theme -->
@@ -1097,6 +1101,8 @@
   <!-- container section start -->
 
   <!-- javascripts -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
   <script src="{{ URL::asset('js/jquery.js')}}"></script>
   <script src="{{ URL::asset('js/metodos.js')}}"></script>
   <script src="{{ URL::asset('js/jquery-ui-1.10.4.min.js')}}"></script>
@@ -1113,7 +1119,7 @@
   <script src="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
   <script src="{{ URL::asset('js/owl.carousel.js')}}"></script>
   <!-- jQuery full calendar -->
-  <<script src="{{ URL::asset('js/fullcalendar.min.js')}}"></script>
+  <script src="{{ URL::asset('js/fullcalendar.min.js')}}"></script>
     <!-- Full Google Calendar - Calendar -->
     <script src="assets/fullcalendar/fullcalendar/fullcalendar.js"></script>
     <!--script for this page only-->
@@ -1183,6 +1189,28 @@
         });
       });
     </script>
+    <script>
+  @if(Session::has('message'))
+    var type = "{{ Session::get('alert-type', 'info') }}";
+    switch(type){
+        case 'info':
+            toastr.info("{{ Session::get('message') }}");
+            break;
+        
+        case 'warning':
+            toastr.warning("{{ Session::get('message') }}");
+            break;
+
+        case 'success':
+            toastr.success("{{ Session::get('message') }}");
+            break;
+
+        case 'error':
+            toastr.error("{{ Session::get('message') }}");
+            break;
+    }
+  @endif
+</script>
 
 </body>
 

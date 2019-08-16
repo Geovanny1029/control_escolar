@@ -17,12 +17,13 @@ class LoginController extends Controller
 
         if (Auth::attempt(['usuario' =>$request['usuario'], 'password' => $request['password']])) {
 
+            $notification = array('message' => 'Bienvenido'." ".Auth::User()->nombres,'alert-type' => 'success');
             if(Auth::user()->nivel == 1){
-                return redirect()->route('user.index');}
+                return redirect()->route('user.index')->with($notification);}
                 else
-                    if(Auth::user()->nivel == 2){return redirect()->route('user.vistam');}
+                    if(Auth::user()->nivel == 2){return redirect()->route('user.vistam')->with($notification);}
                 else
-                    if(Auth::user()->nivel == 3){return redirect()->route('user.vistaal');}
+                    if(Auth::user()->nivel == 3){return redirect()->route('user.vistaal')->with($notification);}
                                      
                 else{
                     return view('auth.login');

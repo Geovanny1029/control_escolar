@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Laracasts\Flash\Flash;
 use App\Grupo;
 use App\Estatus;
 
@@ -52,9 +51,12 @@ class GrupoController extends Controller
         $grupo->nombre=strtoupper($request->Nombre_grupo);
         $grupo->save();
 
-        Flash::success('se ha registrado '.$grupo->nombre.' de Forma Exitosa');
+        $notification = array(
+        'message' => 'El Grupo se ha Guardado Exitosamente', 
+        'alert-type' => 'success'
+        );
 
-        return back();
+        return back()->with($notification);
     }
 
     /**
@@ -99,7 +101,12 @@ class GrupoController extends Controller
         $data->estatus=$request->edit_estatusg;
         $data->save();
 
-        return back();
+        $notification = array(
+        'message' => 'El Grupo se ha actualizado Exitosamente', 
+        'alert-type' => 'success'
+        );
+
+        return back()->with($notification);
     }
 
     public function view(Request $request){
