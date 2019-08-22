@@ -64,7 +64,12 @@ class UserController extends Controller
         $user->password=bcrypt($request->password);
         $user->save();
 
-        return back();
+        $notification = array(
+        'message' => 'El Usuario se ha Guardado Exitosamente', 
+        'alert-type' => 'success'
+        );
+
+        return back()->with($notification);
     }
 
     public function storesub(Request $request){
@@ -150,7 +155,12 @@ class UserController extends Controller
         $data->estatus=$request->edit_estatus;
         $data->save();
 
-        return back();
+        $notification = array(
+        'message' => 'El Usuario se ha Actualizado Exitosamente', 
+        'alert-type' => 'success'
+        );        
+
+        return back()->with($notification);
     }
 
     public function actualizasub(Request $request){
@@ -279,17 +289,28 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //cambiar estatus a usuarios
     public function destroy($id)
     {
         $users = User::find($id);
         if($users->estatus == 2){
             $users->estatus = 1;
             $users->save();
-            return redirect()->route('user.index');
+
+        $notification = array(
+        'message' => 'El Usuario se ha Activado Exitosamente', 
+        'alert-type' => 'success'
+        );
+            return redirect()->route('user.index')->with($notification);
         }else{
             $users->estatus = 2;
             $users->save();
-            return redirect()->route('user.index');
+
+        $notification = array(
+        'message' => 'El Usuario ha sido dado de baja Exitosamente', 
+        'alert-type' => 'error'
+        );            
+            return redirect()->route('user.index')->with($notification);
         }
 
         

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\GrupoRequest;
+use Illuminate\Support\Facades\Validator;
 use App\Grupo;
 use App\Estatus;
 
@@ -45,8 +47,9 @@ class GrupoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GrupoRequest $request)
     {
+
         $grupo = new Grupo($request->all());
         $grupo->nombre=strtoupper($request->Nombre_grupo);
         $grupo->save();
@@ -123,17 +126,31 @@ class GrupoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //baja de grupos
     public function destroy($id)
     {
         $grupos = Grupo::find($id);
         if($grupos->estatus == 2){
             $grupos->estatus = 1;
             $grupos->save();
-            return redirect()->route('grupo.index');
+
+            $notification = array(
+            'message' => 'El Grupo se ha Activado Exitosamente', 
+            'alert-type' => 'success'
+            );
+
+            return redirect()->route('grupo.index')->with($notification);
         }else{
             $grupos->estatus = 2;
             $grupos->save();
-            return redirect()->route('grupo.index');
+
+            $notification = array(
+            'message' => 'El Grupo se ha Desactivado Exitosamente', 
+            'alert-type' => 'error'
+            );
+
+            return redirect()->route('grupo.index')->with($notification);
         }
     }
 }

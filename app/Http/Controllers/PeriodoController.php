@@ -51,7 +51,12 @@ class PeriodoController extends Controller
         $periodo->periodo=strtoupper($request->Nombre_periodo);
         $periodo->save();
 
-        return back();
+        $notification = array(
+            'message' => 'El periodo se ha creado Exitosamente', 
+            'alert-type' => 'success'
+        );
+
+        return back()->with($notification);
     }
 
     /**
@@ -96,7 +101,12 @@ class PeriodoController extends Controller
         $data->estatus=$request->edit_estatusp;
         $data->save();
 
-        return back();
+        $notification = array(
+            'message' => 'El periodo se ha actualizado Exitosamente', 
+            'alert-type' => 'success'
+        );
+
+        return back()->with($notification);
     }
 
     public function view(Request $request){
@@ -119,11 +129,21 @@ class PeriodoController extends Controller
         if($periodos->estatus == 2){
             $periodos->estatus = 1;
             $periodos->save();
-            return redirect()->route('periodo.index');
+
+            $notification = array(
+                'message' => 'El periodo se ha activado Exitosamente', 
+                'alert-type' => 'success'
+            );
+            return redirect()->route('periodo.index')->with($notification);
         }else{
             $periodos->estatus = 2;
             $periodos->save();
-            return redirect()->route('periodo.index');
+
+            $notification = array(
+                'message' => 'El periodo se ha desactivado Exitosamente', 
+                'alert-type' => 'error'
+            );
+            return redirect()->route('periodo.index')->with($notification);
         }
     }
 }

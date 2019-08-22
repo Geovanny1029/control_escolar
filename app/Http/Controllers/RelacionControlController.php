@@ -73,7 +73,12 @@ class RelacionControlController extends Controller
         $relacion->id_alumno= $request->alumnosel;
         $relacion->save();
 
-        return back();
+        $notification = array(
+            'message' => 'La relacion se ha creado Exitosamente', 
+            'alert-type' => 'success'
+        );
+
+        return back()->with($notification);
     }
 
     /**
@@ -120,6 +125,11 @@ class RelacionControlController extends Controller
         $data->id_maestro=$request->edit_maestrosel;
         $data->id_alumno=$request->edit_alumnosel;
         $data->save();
+
+        $notification = array(
+            'message' => 'La relacion se ha actualizado Exitosamente', 
+            'alert-type' => 'success'
+        );
 
         return back();
     }

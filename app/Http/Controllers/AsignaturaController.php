@@ -51,7 +51,12 @@ class AsignaturaController extends Controller
         $asignatura->nombre=strtoupper($request->Nombre_asignatura);
         $asignatura->save();
 
-        return back();
+        $notification = array(
+            'message' => 'La asignatura se ha creado Exitosamente', 
+            'alert-type' => 'success'
+        );
+
+        return back()->with($notification);
     }
 
     /**
@@ -96,7 +101,12 @@ class AsignaturaController extends Controller
         $data->estatus=$request->edit_estatusa;
         $data->save();
 
-        return back();
+        $notification = array(
+            'message' => 'La asignatura se ha actualizado Exitosamente', 
+            'alert-type' => 'success'
+        );
+
+        return back()->with($notification);
     }
 
     public function view(Request $request){
@@ -119,11 +129,21 @@ class AsignaturaController extends Controller
         if($asignaturas->estatus == 2){
             $asignaturas->estatus = 1;
             $asignaturas->save();
-            return redirect()->route('asignatura.index');
+
+            $notification = array(
+                'message' => 'La asignatura se ha activado Exitosamente', 
+                'alert-type' => 'success'
+            );
+            return redirect()->route('asignatura.index')->with($notification);
         }else{
             $asignaturas->estatus = 2;
             $asignaturas->save();
-            return redirect()->route('asignatura.index');
+
+            $notification = array(
+                'message' => 'La asignatura se ha desactivado Exitosamente', 
+                'alert-type' => 'error'
+            );
+            return redirect()->route('asignatura.index')->with($notification);
         }
     }
 }
