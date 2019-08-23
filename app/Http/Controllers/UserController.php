@@ -78,6 +78,7 @@ class UserController extends Controller
         $cali->C1 = $request->C1;
         $cali->C2 = $request->C2;
         $cali->C3 = $request->C3;
+        $cali->promedio = (($request->C1 + $request->C2 + $request->C1)/3);
         $cali->save();
         return back();
         
@@ -170,6 +171,7 @@ class UserController extends Controller
         $data->C1=($request->edit_C1);
         $data->C2=($request->edit_C2);
         $data->C3=($request->edit_C3);
+        $data->promedio= (($request->edit_C1 + $request->edit_C2 + $request->edit_C3) / 3);
         $data->save();
 
         return back();
@@ -314,5 +316,32 @@ class UserController extends Controller
         }
 
         
+    }
+
+    public function vriesgo(){
+
+    if(Auth::User()->nivel == 1){
+        $maestro = '`calificaciones`.promedio < 6';
+    }else{
+        $maestro = '`relacion_control`.id_maestro = '.Auth::User()->id.' AND `calificaciones`.promedio < 6';
+    }
+
+        $relacion = RelacionControl::from('relacion_control')->leftjoin('calificaciones','calificaciones.id_relacion','=','relacion_control.id')->select(array(
+            'relacion_control.id_grupo',
+            'relacion_control.id_asignatura',
+            'relacion_control.id_maestro',
+            'relacion_control.id_periodo',
+            'relacion_control.id_alumno',
+            'calificaciones.promedio'))->whereraw($maestro)->get();
+
+        $relacion->each(function($relacion){
+            $relacion->asignaturar;
+            $relacion->grupor;
+            $relacion->userm;
+            $relacion->periodo1;
+            $relacion->useral;
+        });
+
+        return view('maestro.alumnosriesgo')->with('relacion',$relacion);
     }
 }

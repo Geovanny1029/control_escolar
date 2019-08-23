@@ -8,7 +8,7 @@
 
 {!! Form::close() !!} -->
 
-<button type="button" class="btn btn-info" data-toggle="modal" data-target="#addModalg">Crear nuevo Grupo</button> <br><br>
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#addModalg">Crear nuevo Grupo</button>
 
 @include('grupos.crear')
 

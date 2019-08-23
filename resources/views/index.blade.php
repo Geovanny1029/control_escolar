@@ -23,21 +23,20 @@
   <!-- font icon -->
   <link href="{{asset('css/elegant-icons-style.css')}}" rel="stylesheet" />
   <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet" />
-  <!-- full calendar css-->
-  <link href="{{asset('assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css')}}" rel="stylesheet" />
-  <link href="{{asset('assets/fullcalendar/fullcalendar/fullcalendar.css')}}" rel="stylesheet" />
-  <!-- easy pie chart-->
-  <link href="{{asset('assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css')}}" rel="stylesheet" type="text/css" media="screen" />
+
   <!-- owl carousel -->
   <link rel="stylesheet" href="{{asset('css/owl.carousel.css')}}" type="text/css">
   <link href="{{asset('css/jquery-jvectormap-1.2.2.css')}}" rel="stylesheet">
   <!-- Custom styles -->
-  <link rel="stylesheet" href="{{asset('css/fullcalendar.css')}}">
   <link href="{{asset('css/widgets.css')}}" rel="stylesheet">
   <link rel="stylesheet" href="{{asset('css/style.css')}}" >
   <link href="{{asset('css/style-responsive.css')}}" rel="stylesheet" />
   <link href="{{asset('css/xcharts.min.css')}}" rel=" stylesheet">
   <link href="{{asset('css/jquery-ui-1.10.4.min.css')}}" rel="stylesheet">
+  <link href="{{ URL::asset('css/lity.css')}}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/rowgroup/1.1.0/css/rowGroup.dataTables.min.css">
+ 
   <!-- =======================================================
     Theme Name: NiceAdmin
     Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -320,19 +319,27 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
           <li class="active">
-            <a class="" href="">
+            @if(Auth::user()->nivel == 1)
+              <a class="" href="{{route('user.index')}}">
+            @elseif(Auth::user()->nivel == 2)
+             <a class="" href="{{route('user.vistam')}}">
+            @else
+              <a class="" href="{{route('user.vistaal')}}">
+            @endif
+            
                           <i class="icon_house_alt"></i>
                           <span>
-                             @if(Auth::user()->nivel == 1)
-                                Administrador
-                              @elseif(Auth::user()->nivel == 2)
-                                Maestro
-                              @else
-                                Alumno
-                              @endif
+                            @if(Auth::user()->nivel == 1)
+                              Administrador
+                            @elseif(Auth::user()->nivel == 2)
+                              Maestro
+                            @else
+                              Alumno
+                            @endif
                           </span>
-                      </a>
+            </a>
           </li>
+          {{-- altas administrador--}}
           @if(Auth::User()->nivel == 1)
           <li class="sub-menu">
             <a href="javascript:;" class="">
@@ -349,6 +356,12 @@
               <li><a class="" href="{{route('relacion_control.index')}}">Relacion</a></li>             
             </ul>
           </li>
+          @else
+          @endif
+
+          {{-- Vista alum riesgo --}}
+          @if(Auth::User()->nivel == 1 || Auth::User()->nivel == 2 )
+            <li><a class="" href="{{route('user.vriesgo')}}">Alumnos en riesgo</a></li> 
           @else
           @endif
 {{--           <li class="sub-menu">
@@ -1116,14 +1129,9 @@
   <!-- charts scripts -->
   <script src="assets/jquery-knob/js/jquery.knob.js"></script>
   <script src="{{ URL::asset('js/jquery.sparkline.js')}}" type="text/javascript"></script>
-  <script src="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
   <script src="{{ URL::asset('js/owl.carousel.js')}}"></script>
-  <!-- jQuery full calendar -->
-  <script src="{{ URL::asset('js/fullcalendar.min.js')}}"></script>
-    <!-- Full Google Calendar - Calendar -->
-    <script src="assets/fullcalendar/fullcalendar/fullcalendar.js"></script>
+ 
     <!--script for this page only-->
-    <script src="{{ URL::asset('js/calendar-custom.js')}}"></script>
     <script src="{{ URL::asset('js/jquery.rateit.min.js')}}"></script>
     <!-- custom select -->
     <script src="{{ URL::asset('js/jquery.customSelect.min.js')}}"></script>
@@ -1132,8 +1140,6 @@
     <!--custome script for all page-->
     <script src="js/scripts.js"></script>
     <!-- custom script for this page-->
-    <script src="{{ URL::asset('js/sparkline-chart.js')}}"></script>
-    <script src="{{ URL::asset('js/easy-pie-chart.js')}}"></script>
     <script src="{{ URL::asset('js/jquery-jvectormap-1.2.2.min.js')}}"></script>
     <script src="{{ URL::asset('js/jquery-jvectormap-world-mill-en.js')}}"></script>
     <script src="{{ URL::asset('js/xcharts.min.js')}}"></script>
@@ -1143,52 +1149,14 @@
     <script src="{{ URL::asset('js/morris.min.js')}}"></script>
     <script src="{{ URL::asset('js/sparklines.js')}}"></script>
     <script src="{{ URL::asset('js/charts.js')}}"></script>
+    <script src="{{ URL::asset('js/lity.js')}}"></script>
     <script src="{{ URL::asset('js/jquery.slimscroll.min.js')}}"></script>
-    <script>
-      //knob
-      $(function() {
-        $(".knob").knob({
-          'draw': function() {
-            $(this.i).val(this.cv + '%')
-          }
-        })
-      });
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/rowgroup/1.1.0/js/dataTables.rowGroup.min.js"></script>
 
-      //carousel
-      $(document).ready(function() {
-        $("#owl-slider").owlCarousel({
-          navigation: true,
-          slideSpeed: 300,
-          paginationSpeed: 400,
-          singleItem: true
 
-        });
-      });
 
-      //custom select box
 
-      $(function() {
-        $('select.styled').customSelect();
-      });
-
-      /* ---------- Map ---------- */
-      $(function() {
-        $('#map').vectorMap({
-          map: 'world_mill_en',
-          series: {
-            regions: [{
-              values: gdpData,
-              scale: ['#000', '#000'],
-              normalizeFunction: 'polynomial'
-            }]
-          },
-          backgroundColor: '#eef3f7',
-          onLabelShow: function(e, el, code) {
-            el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
-          }
-        });
-      });
-    </script>
     <script>
   @if(Session::has('message'))
     var type = "{{ Session::get('alert-type', 'info') }}";
@@ -1210,6 +1178,68 @@
             break;
     }
   @endif
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#tablausuarios, #tablaasignaturas, #tablagrupos, #tablaperiodos').DataTable({
+            "language": {
+  "sProcessing":     "Procesando...",
+  "sLengthMenu":     "Mostrar _MENU_ registros",
+  "sZeroRecords":    "No se encontraron resultados",
+  "sEmptyTable":     "Ningún dato disponible en esta tabla",
+  "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+  "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+  "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+  "sInfoPostFix":    "",
+  "sSearch":         "Buscar:",
+  "sUrl":            "",
+  "sInfoThousands":  ",",
+  "sLoadingRecords": "Cargando...",
+  "oPaginate": {
+    "sFirst":    "Primero",
+    "sLast":     "Último",
+    "sNext":     "Siguiente",
+    "sPrevious": "Anterior"
+  },
+  "oAria": {
+    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+  }
+     },
+     "order": [[ 0, "asc" ]],
+    });
+
+
+// tabla relacion
+$(document).ready(function() {
+    $('#tablarelacion').DataTable( {
+        order: [[1, 'asc'], [4, 'asc']],
+        rowGroup: {
+            dataSrc: [ 1, 4 ]
+        },
+        columnDefs: [ {
+            targets: [ 4, 1 ],
+            visible: false
+        } ]
+    } );
+} );
+
+//tabla alumnos en riesgo
+$(document).ready(function() {
+    $('#tablariesgoalumno').DataTable( {
+        order: [[0, 'asc'], [3, 'asc']],
+        rowGroup: {
+            dataSrc: [ 0, 3 ]
+        },
+        columnDefs: [ {
+            targets: [ 3, 0 ],
+            visible: false
+        } ]
+    } );
+} );
+} );
+
 </script>
 
 </body>

@@ -8,7 +8,7 @@
 
 {!! Form::close() !!} -->
 
-<button type="button" class="btn btn-info" data-toggle="modal" data-target="#addModala">Crear nueva asignatura</button> <br><br>
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#addModala">Crear nueva asignatura</button>
 
 @include('asignaturas.crear')
 

@@ -48,6 +48,11 @@ Route::get('useralumno',[
 			'as'   => 'user.vistaal'
 ]);
 
+Route::get('vistariesgo',[
+			'uses' => 'UserController@vriesgo',
+			'as'   => 'user.vriesgo'
+]);
+
 Route::get('usermaestrogrupo/{id}','UserController@grupoM');
 
 Route::get('useralumnogrupo/{id}','UserController@grupoAl');

@@ -47,6 +47,10 @@ ul li {
 }
 
 
+tr.odd td:first-child,
+tr.even td:first-child {
+    padding-left: 4em;
+}
 
 a, a:hover, a:focus {
 

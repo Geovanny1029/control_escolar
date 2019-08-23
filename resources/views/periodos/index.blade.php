@@ -8,7 +8,7 @@
 
 {!! Form::close() !!} -->
 
-<button type="button" class="btn btn-info" data-toggle="modal" data-target="#addModalp">Crear nuevo Periodo</button> <br><br>
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#addModalp">Crear nuevo Periodo</button>
 
 @include('periodos.crear')
 

@@ -8,7 +8,7 @@
 
 {!! Form::close() !!} -->
 
-<button type="button" class="btn btn-info" data-toggle="modal" data-target="#addModal">Crear nuevo Usuario</button> <br><br>
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#addModal">Crear nuevo Usuario</button>
 
 @include('usuarios.crear')
 

@@ -16,9 +16,8 @@
     </ul>
   </div>  
   @endif
-  
-<button type="button" class="btn btn-info" data-toggle="modal" data-target="#addModalr">Crear Relaciones</button> <br><br>
 
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#addModalr">Crear Relaciones</button>
 @include('relacion.crear')
 
 <table class="table table-striped" id="tablarelacion">
