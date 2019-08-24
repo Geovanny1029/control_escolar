@@ -13,29 +13,29 @@
               <div class="row">
                <div class="form-group col-md-6">
                 {!! Form::label('Grupo', 'Grupo') !!} 
-                {!! Form::select('gruposel',$listaG,null,['class' => 'form-control']) !!}
+                {!! Form::select('id_grupo',$listaG,null,['class' => 'form-control']) !!}
                </div>
                <div class="form-group col-md-6">
                 {!! Form::label('Asignatura', 'Asignatura') !!} 
-                {!! Form::select('asignaturasel',$listaA,null,['class' => 'form-control']) !!}
+                {!! Form::select('id_asignatura',$listaA,null,['class' => 'form-control']) !!}
                 </div>
               </div>
 
               <div class="row">
                <div class="form-group col-md-6">
                 {!! Form::label('Periodo', 'Periodo') !!} 
-                {!! Form::select('periodosel',$listaP,null,['class' => 'form-control']) !!}
+                {!! Form::select('id_periodo',$listaP,null,['class' => 'form-control']) !!}
                </div>
                <div class="form-group col-md-6">
                 {!! Form::label('Maetsro', 'Maetsro') !!} 
-                {!! Form::select('maestrosel',$listaMa,null,['class' => 'form-control']) !!}
+                {!! Form::select('id_maestro',$listaMa,null,['class' => 'form-control']) !!}
                </div>
               </div>
 
               <div class="row">
                 <div class="form-group col-md-6">
                 {!! Form::label('Alumno', 'Alumno') !!} 
-                {!! Form::select('alumnosel',$listaAl,null,['class' => 'form-control']) !!}
+                {!! Form::select('id_alumno',$listaAl,null,['class' => 'form-control']) !!}
                </div>
               </div>
 

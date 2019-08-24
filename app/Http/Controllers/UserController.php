@@ -78,7 +78,10 @@ class UserController extends Controller
         $cali->C1 = $request->C1;
         $cali->C2 = $request->C2;
         $cali->C3 = $request->C3;
-        $cali->promedio = (($request->C1 + $request->C2 + $request->C1)/3);
+        if($request->C3 != null || $request->C3 != ""){
+             $cali->promedio = (($request->C1 + $request->C2 + $request->C1)/3);
+        }
+       
         $cali->save();
         return back();
         

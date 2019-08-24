@@ -51,7 +51,7 @@ class GrupoController extends Controller
     {
 
         $grupo = new Grupo($request->all());
-        $grupo->nombre=strtoupper($request->Nombre_grupo);
+        $grupo->nombre=strtoupper($request->nombre);
         $grupo->save();
 
         $notification = array(

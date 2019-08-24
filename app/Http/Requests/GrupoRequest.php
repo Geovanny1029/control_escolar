@@ -25,7 +25,26 @@ class GrupoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'unique:grupos',
+            'nombre' => 'unique:grupos'
+        ];
+    }
+
+
+
+    public function messages()
+    {
+        return [
+            'nombre.unique' => 'El :attribute ya existe'
+          
+        ];
+    }
+
+
+    public function attributes()
+    {
+        return [
+            'nombre' => 'nombre del grupo'
+            
         ];
     }
 }

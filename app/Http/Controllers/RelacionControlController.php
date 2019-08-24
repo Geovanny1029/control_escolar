@@ -66,11 +66,11 @@ class RelacionControlController extends Controller
     public function store(ControlRequest $request)
     {
         $relacion = new RelacionControl($request->all());
-        $relacion->id_grupo = $request->gruposel;
-        $relacion->id_asignatura = $request->asignaturasel;
-        $relacion->id_periodo = $request->periodosel;
-        $relacion->id_maestro = $request->maestrosel;
-        $relacion->id_alumno= $request->alumnosel;
+        $relacion->id_grupo = $request->id_grupo;
+        $relacion->id_asignatura = $request->id_asignatura;
+        $relacion->id_periodo = $request->id_periodo;
+        $relacion->id_maestro = $request->id_maestro;
+        $relacion->id_alumno= $request->id_alumno;
         $relacion->save();
 
         $notification = array(

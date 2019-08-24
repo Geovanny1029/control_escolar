@@ -20,7 +20,7 @@
         {{$alumno->useral->nombres}} {{$alumno->useral->apellidos}} 
       </td>
       <td> 
-        <h4><a href="/Calificacion/{{$alumno->id}}">Ver</a> </h4>
+        <h4><a href="/Calificacion/{{$alumno->id}}" data-lity >Ver</a> </h4>
       </td>
     </tr>
     

@@ -87,7 +87,7 @@ function fun_editr(id)
         success: function(result){
           //console.log(result);
           $("#edit_gruposel").val(result.id_grupo);
-          $("#edit_asignatura").val(result.id_asignatura);
+          $("#edit_asignaturasel").val(result.id_asignatura);
           $("#edit_periodosel").val(result.id_periodo);
           $("#edit_maestrosel").val(result.id_maestro);
           $("#edit_alumnosel").val(result.id_alumno);

@@ -3,19 +3,17 @@
 @section('panel','Relacion Grupo,Asignatura,Maetsro,Alumno')
 @section('content')
 
+        @if(count($errors) > 0)
+            <div class="alert alert-danger" role="alert">
+               @foreach ($errors->all() as $error)
+                  <div>{{ $error }}</div>
+              @endforeach
+            </div>
+        @endif 
 
 <!-- {!! Form::open(['route' => 'relacion_control.index', 'method' => 'GET', 'class' => 'navbar-form pull-left' ]) !!}
 
 {!! Form::close() !!} -->
-@if(count($errors) > 0)
-  <div class="alert alert-danger" role='alert'>
-    <ul> 
-    @foreach($errors->all() as $error)
-      <li>{{$error}} </li>
-    @endforeach
-    </ul>
-  </div>  
-  @endif
 
 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addModalr">Crear Relaciones</button>
 @include('relacion.crear')

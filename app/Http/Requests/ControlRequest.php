@@ -25,8 +25,23 @@ class ControlRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_grupo' => 'unique:relacion_control,id_grupo,NULL,id_periodo,'.input::get('periodosel').',id_maestro,'.input::get('maestrosel').',id_alumno,'.input::get('alumnosel').',id_asignatura,'.input::get('asignaturasel'),
-            'id_asignatura' => 'string',
+            'id_grupo' => 'unique:relacion_control,id_grupo,NULL,id,id_periodo,'.input::get('id_periodo').',id_maestro,'.input::get('id_maestro').',id_alumno,'.input::get('id_alumno').',id_asignatura,'.input::get('id_asignatura')
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'id_grupo.unique' => 'La :attribute Entre maestro, asignatura, periodo, alumno ya existe verificar'
+          
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'id_grupo' => 'Relacion'
+            
         ];
     }
 }
