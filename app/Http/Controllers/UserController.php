@@ -81,7 +81,6 @@ class UserController extends Controller
         if($request->C3 != null || $request->C3 != ""){
              $cali->promedio = (($request->C1 + $request->C2 + $request->C1)/3);
         }
-       
         $cali->save();
         return back();
         
@@ -206,7 +205,7 @@ class UserController extends Controller
 
     public function grupoM($id){
 
-        $asignaturas = RelacionControl::select('id_asignatura'
+        $asignaturas = RelacionControl::select('id_asignatura','id'
       )->where('id_grupo',$id)->where('id_maestro',Auth::User()->id)->groupBy('id_asignatura')->orderBY('id','asc')->get();
 
         $idr = RelacionControl::where('id_grupo',$id)->where('id_maestro',Auth::User()->id)->get();
@@ -226,7 +225,7 @@ class UserController extends Controller
 
     public function grupoAL($id){
 
-        $asignaturas = RelacionControl::select('id_asignatura'
+        $asignaturas = RelacionControl::select('id_asignatura','id_grupo','id'
       )->where('id_grupo',$id)->where('id_alumno',Auth::User()->id)->groupBy('id_asignatura')->orderBY('id','asc')->get();
 
         $idr = RelacionControl::where('id_grupo',$id)->where('id_alumno',Auth::User()->id)->get();
@@ -253,7 +252,6 @@ class UserController extends Controller
 
         $alumnos = RelacionControl::where('id_grupo',$grupo)->where('id_asignatura',$materia)->where('id_maestro',Auth::User()->id)->get();
        
-
         $alumnos->each(function($alumnos){
         $alumnos->useral;
         });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\AsignaturaRequest;
 use App\Asignatura;
 use App\Estatus;
 
@@ -45,10 +46,10 @@ class AsignaturaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AsignaturaRequest $request)
     {
         $asignatura = new Asignatura($request->all());
-        $asignatura->nombre=strtoupper($request->Nombre_asignatura);
+        $asignatura->nombre=strtoupper($request->nombre);
         $asignatura->save();
 
         $notification = array(

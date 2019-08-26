@@ -14,7 +14,7 @@
               <div class="row">
                 <div class="form-group col-md-6">
                  {!! Form::label('Nombre_asignatura', 'Nombre asignatura') !!} 
-                 {!! Form::text('Nombre_asignatura',null,['class' => 'form-control','style' => 'text-transform:uppercase;' , 'placeholder' => 'Nombre Asignatura', 'required' ] ) !!}
+                 {!! Form::text('nombre',null,['class' => 'form-control','style' => 'text-transform:uppercase;' , 'placeholder' => 'Nombre Asignatura', 'required' ] ) !!}
                </div>
                <div class="form-group col-md-6">
                 {!! Form::label('Estatus', 'Estatus') !!} 

@@ -8,7 +8,7 @@
 
 <?php for ($i=0; $i < count($asignaturas) ; $i++) { ?>
 <center>
-<h4><a href="/useralumnocalificacion/{{$idr[$i]->id}}" data-lity>{{$asignaturas[$i]->asignaturar->nombre}}</a> </h4> 
+<h4><a href="/useralumnocalificacion/{{$asignaturas[$i]->id}}" data-lity>{{$asignaturas[$i]->asignaturar->nombre}}</a> </h4> 
 	
 </center>
 

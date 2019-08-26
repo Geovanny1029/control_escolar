@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\PeriodoRequest;
 use App\Periodo;
 use App\Estatus;
 
@@ -45,10 +46,10 @@ class PeriodoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PeriodoRequest $request)
     {
         $periodo = new Periodo($request->all());
-        $periodo->periodo=strtoupper($request->Nombre_periodo);
+        $periodo->periodo=strtoupper($request->periodo);
         $periodo->save();
 
         $notification = array(

@@ -8,7 +8,7 @@
 
 <?php for ($i=0; $i < count($asignaturas) ; $i++) { ?>
 <center>
-<h4><a href="/usermaestrogrupoasignatura/{{$idr[$i]->id}}">{{$asignaturas[$i]->asignaturar->nombre}}</a> </h4> 
+<h4><a href="/usermaestrogrupoasignatura/{{$asignaturas[$i]->id}}">{{$asignaturas[$i]->asignaturar->nombre}}</a> </h4> 
 	
 </center>
 

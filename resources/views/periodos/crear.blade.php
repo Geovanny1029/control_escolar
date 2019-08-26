@@ -14,7 +14,7 @@
               <div class="row">
                 <div class="form-group col-md-6">
                  {!! Form::label('Nombre_periodo', 'Periodo') !!} 
-                 {!! Form::text('Nombre_periodo',null,['class' => 'form-control','style' => 'text-transform:uppercase;' , 'placeholder' => 'Periodo', 'required' ] ) !!}
+                 {!! Form::text('periodo',null,['class' => 'form-control','style' => 'text-transform:uppercase;' , 'placeholder' => 'Periodo', 'required' ] ) !!}
                </div>
                <div class="form-group col-md-6">
                 {!! Form::label('Estatus', 'Estatus') !!} 
